@@ -1,4 +1,4 @@
-package com.example.likelion.test;
+package com.example.likelion.test.tmp.dto;
 
 import lombok.*;
 

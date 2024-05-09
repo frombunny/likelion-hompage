@@ -1,5 +1,6 @@
-package com.example.likelion.test;
+package com.example.likelion.test.tmp.controller;
 
+import com.example.likelion.test.tmp.dto.SimpleDto;
 import com.example.likelion.util.response.CustomApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
