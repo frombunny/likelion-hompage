@@ -16,7 +16,8 @@ public class UserTestController {
     @PostMapping("/signup")
     public ResponseEntity<CustomApiResponse<?>> signup(@Valid @RequestBody SignupDto dto) {
         //회원가입
-        System.out.println(dto.getUserId());
+//        System.out.println(dto.getUserId());
+        System.out.println(dto.getEmail());
 
         
         //응답
