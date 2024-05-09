@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("tmp/api/user")
 public class UserTestController {
     //POST http://localhost:8080/api/user/signup
     @PostMapping("/signup")
