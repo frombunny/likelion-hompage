@@ -26,8 +26,8 @@ public class CustomTestController {
         //userId : example
         //email : example@naver.com
 
-//        //dto 클래스 방법 1 : new로 생성
-//        SimpleDto dto = new SimpleDto("example","example@naver.com");
+//      //dto 클래스 방법 1 : new로 생성
+//      SimpleDto dto = new SimpleDto("example","example@naver.com");
 
         //dto 클래스 방법 2 : builder로 생성
         SimpleDto dto = SimpleDto.builder()
