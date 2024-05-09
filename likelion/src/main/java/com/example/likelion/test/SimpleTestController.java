@@ -25,7 +25,7 @@ public class SimpleTestController {
 
     // GET http://localhost:8080/api/simpleText/fail
     @GetMapping("/fail")
-    public ResponseEntity simpleTextFail() {
+    public ResponseEntity<String> simpleTextFail() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("실패");
     }
 
