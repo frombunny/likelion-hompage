@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/post")
+@RequestMapping("api/post")
 public class PostController {
     private final PostService postService;
 
@@ -25,4 +25,3 @@ public class PostController {
         return result;
     }
 }
-    )
