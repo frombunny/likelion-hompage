@@ -32,4 +32,17 @@ public class Post  extends BaseEntity {
 
     @Column(name="POSTS_PASSWORD")
     private String password; //비밀 번호
+
+    public void changeTitle(String title){
+        this.title = title;
+    }
+
+    public void changeContent(String content){
+        this.content = content;
+    }
+
+    public void changeUserName(String postedUserName){
+        this.postedUserName = postedUserName;
+    }
 }
+
