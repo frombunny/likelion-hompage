@@ -2,6 +2,7 @@ package com.example.likelion.posts.service;
 
 import com.example.likelion.domain.Post;
 import com.example.likelion.posts.dto.PostCreateDto;
+import com.example.likelion.posts.dto.PostListDto;
 import com.example.likelion.posts.dto.PostUpdateDto;
 import com.example.likelion.posts.repository.PostRepository;
 import com.example.likelion.util.response.CustomApiResponse;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,6 +61,51 @@ public class PostServiceImpl implements PostService{
         PostUpdateDto.UpdatePost data=new PostUpdateDto.UpdatePost(post.getUpdatedAt());
         CustomApiResponse<PostUpdateDto.UpdatePost> res=CustomApiResponse
                 .createSuccess(HttpStatus.OK.value(), data, "게시글이 수정되었습니다.");
+        return ResponseEntity.status(HttpStatus.OK).body(res);
+    }
+
+    @Override
+    public ResponseEntity<CustomApiResponse<?>> getAllPost(){
+        List<Post> posts=postRepository.findAll();
+        List<PostListDto.PostResponse> postResponses=new ArrayList<>();
+
+        for(Post post:posts){
+            postResponses.add(PostListDto.PostResponse.builder()
+                    .postId(post.getId())
+                    .postedUserName(post.getPostedUserName())
+                    .title(post.getTitle())
+                    .content(post.getContent())
+                    .updatedAt(post.getUpdatedAt())
+                    .build());
+        }
+
+        PostListDto.SearchPostsRes searchPostsRes = new PostListDto.SearchPostsRes(postResponses);
+        CustomApiResponse<PostListDto.SearchPostsRes> res=CustomApiResponse.createSuccess(
+                HttpStatus.OK.value(), searchPostsRes,"전체 게시글 조회 성공");
+
+        return ResponseEntity.status(HttpStatus.OK).body(res);
+    }
+
+    @Override
+    public ResponseEntity<CustomApiResponse<?>> getOnePost(Long postId) {
+        Optional<Post> optionalPost=postRepository.findById(postId);
+        if(optionalPost.isEmpty()){
+            CustomApiResponse<Void> res=CustomApiResponse
+                    .createFailWithoutData(HttpStatus.NOT_FOUND.value(),
+                            "해당하는 게시글을 찾을 수 없습니다.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+        }
+
+        Post post=optionalPost.get();
+        PostListDto.PostResponse postResponse=new PostListDto.PostResponse(
+                post.getId(),
+                post.getPostedUserName(),
+                post.getTitle(),
+                post.getContent(),
+                post.getUpdatedAt());
+
+        CustomApiResponse<PostListDto.PostResponse> res=CustomApiResponse.createSuccess(HttpStatus.OK.value(),
+                postResponse,"게시글 조회 성공");
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 }

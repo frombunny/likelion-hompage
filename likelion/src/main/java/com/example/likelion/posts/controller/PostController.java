@@ -29,4 +29,17 @@ public class PostController {
         ResponseEntity<CustomApiResponse<?>> result = postService.modifyPost(postId, req);
         return result;
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<CustomApiResponse<?>> getAllPosts(){
+        ResponseEntity<CustomApiResponse<?>> result =postService.getAllPost();
+        return result;
+    }
+
+    @GetMapping
+    public ResponseEntity<CustomApiResponse<?>> getOndPost(
+            @RequestParam("postId") Long postId){
+        ResponseEntity<CustomApiResponse<?>> result=postService.getOnePost(postId);
+        return result;
+    }
 }

@@ -9,4 +9,8 @@ public interface PostService {
     ResponseEntity<CustomApiResponse<?>> createPost(PostCreateDto.Req req);
 
     ResponseEntity<CustomApiResponse<?>> modifyPost(Long postId, PostUpdateDto.Req req);
+
+    ResponseEntity<CustomApiResponse<?>> getAllPost();
+
+    ResponseEntity<CustomApiResponse<?>> getOnePost(Long postId);
 }
