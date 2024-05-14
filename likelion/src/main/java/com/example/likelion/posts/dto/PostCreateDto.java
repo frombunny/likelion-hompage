@@ -4,6 +4,8 @@ import com.example.likelion.domain.Post;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 public class PostCreateDto {
     @Getter
     @Setter
@@ -32,5 +34,20 @@ public class PostCreateDto {
                     .build();
         }
     }
+
+    //게시글 작성 : postId, updateAt
+    @Getter
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CreatePost{
+        private Long postId;
+        private LocalDateTime updatedAt;
+
+        public CreatePost(Long postId, LocalDateTime updatedAt) {
+            this.postId = postId;
+            this.updatedAt = updatedAt;
+        }
+    }
+
 
 }
